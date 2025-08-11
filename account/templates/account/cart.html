@@ -1,0 +1,133 @@
+<html lang="en">
+  {% load static %}
+  <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Registration</title>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+     
+  
+  </head>
+  <body>
+
+    <section class="h-100 gradient-custom">
+    <div class="container py-5">
+      <div class="row d-flex justify-content-center my-4">
+        
+        <div class="col-md-8">
+          <div class="card mb-4">
+            <div class="card-header py-3">
+              {% if messages %}
+              {% for mes in messages %}
+              <h4 class="mb-0">{{ mes }}</h5>
+                {% endfor %}
+
+                {% endif %}
+
+              <h5 class="mb-0">Cart - 2 items</h5>
+            </div>
+            <div class="card-body">
+              {% for c in cart_obj %}
+              <!-- Single item -->
+              <div class="row">
+           
+                <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+                  <!-- Image -->
+                  <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
+                    <img src="/media/{{c.TestDetails.test_img}}" class="img-fluid rounded w-100" alt="">
+                    <a href="#!">
+                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
+                    </a>
+                </div>
+                <!-- Image -->
+                </div>
+  
+                <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+                  <!-- Data -->           
+                  <p><strong>{{c.TestDetails.Test_name}}</strong></p>
+                  <p><strong>Price{{c.TestDetails.Charge}}</strong></p>
+                  
+                  <a href="{% url 'cart' %}"><i class="btn btn-danger ml-1 fa fa-trash"
+                    value="remove" onclick="remove('{{c.id}}')"></i></a>
+                  
+                  <!-- Data -->
+                </div>
+  
+                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+
+                </div>
+              </div>
+
+
+
+              <!-- Single item -->
+  
+              <hr class="my-4" />
+              {% endfor %}
+
+
+
+              <section id="content" class="content col-sm-8 col-md-9">
+                <h2 class="text-center">CHECKOUT</h2>
+                <table class="table">
+                    <tr>
+                        <td>Price</td>
+                        <td >{{price}}</td>
+                    </tr>
+                    <tr>
+                      <td>Service Charges</td>
+                      <td >{{service_charges}}</td>
+                  </tr>
+                  <tr>
+                    <td>GST</td>
+                    <td >{{tax}}</td>
+                </tr>
+                    <tr>
+                        <td>GRAND TOTAL</td>
+                        <td >{{cart_tot}}</td>
+                    </tr>
+                </table>
+            </section>
+            
+  </section>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.7.0/js/bootstrap.min.js"></script>
+  
+  <!-- menu -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/megamenu/2.0.3/assets/js/custom.js"></script>
+  
+  <!-- Select js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.3/js/standalone/selectize.min.js"></script>
+  
+  <!-- jquery easing -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+  
+ <!-- Include the CSRF token in your form -->
+{% csrf_token %}
+
+<!-- Place this script tag in the <head> or <body> section of your HTML -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+  function remove(id) {
+    $.ajax({
+        url: "{% url 'remove_cart_item' %}",
+        data: {
+            delete_cart: id
+        },
+        success: function (data) {
+            $("#row" + id).hide();
+        }
+    })
+}
+</script>
+ 
+</body>
+  </html>  

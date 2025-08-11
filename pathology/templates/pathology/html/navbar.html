@@ -1,0 +1,88 @@
+{%load static%}
+<nav class="navbar navbar-expand-lg navbar-light " style="background-color: #d1ecff; ">
+        <a class="navbar-brand" href="#">
+          <img src="{% static 'pathology/images/favicon.png' %}" alt="..." height="36">
+        </a>
+    <a class="navbar-brand" href="#">Medlife Pathology</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto " style="margin-left: 100px;">
+            <li class="nav-item active" >
+                <div style="border-radius: 10px;" class="" onmouseover="this.style.background='white'" onmouseout="this.style.background='#d1ecff'"><a class="nav-link" href="{{'/'}}"  >Home <span class="sr-only">(current)</span></a></div>
+            </li>
+            
+            <li class="nav-item">
+                <div style="border-radius: 10px;" class="" onmouseover="this.style.background='white'" onmouseout="this.style.background='#d1ecff'">
+                <a class="nav-link" href="{{'/doctors'}}">Our Doctors</a></div>
+            </li>
+
+            <li class="nav-item">
+                <div style="border-radius: 10px;" class="" onmouseover="this.style.background='white'" onmouseout="this.style.background='#d1ecff'">
+                <a class="nav-link" href="{% url 'reg' %}">Register Yourself</a></div>
+            </li>
+            
+            <li class="nav-item">
+                <div style="border-radius: 10px;" class="" onmouseover="this.style.background='white'" onmouseout="this.style.background='#d1ecff'">
+                <a class="nav-link" href="{{'/test_details'}}">Test Details</a></div>
+            </li>
+        {% if user.is_authenticated %}
+        
+        <li class="nav-item">
+            <div style="border-radius: 10px;" class="" onmouseover="this.style.background='white'" onmouseout="this.style.background='#d1ecff'">
+            <a class="nav-link" href="{% url 'logout' %}">log out</a></div>
+        </li>
+
+        <li class="nav-item">
+            <div style="border-radius: 10px;" class="" onmouseover="this.style.background='white'" onmouseout="this.style.background='#d1ecff'">
+            <a class="nav-link" href="{% url 'view_profile' %}">{{ user.username }}</a></div>
+        </li>
+        
+        {% else %}
+        <li class="nav-item">
+            <div style="border-radius: 10px;" class="" onmouseover="this.style.background='white'" onmouseout="this.style.background='#d1ecff'">
+            <a class="nav-link" href="{% url 'login' %}">Login</a></div>
+
+        </li>
+        {% endif %}
+            <li class="nav-item dropdown">
+                <div style="border-radius: 10px;" class="" onmouseover="this.style.background='white'" onmouseout="this.style.background='#d1ecff'"> 
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Services</a>
+                
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                <li><a class="dropdown-item" href="{{'/ambulance'}}"> Ambulance</a></li>
+                 
+                
+                
+                </ul>
+                </div> 
+                </li>
+          
+            <li class="nav-item">
+                <div style="border-radius: 10px;" class="" onmouseover="this.style.background='white'" onmouseout="this.style.background='#d1ecff'">
+                <a class="nav-link" href="{{'/feedback'}}">Feedback</a></div>
+            </li>
+
+            <li class="nav-item">
+            <div style="border-radius: 10px;" class="" onmouseover="this.style.background='white'" onmouseout="this.style.background='#d1ecff'">
+                <a class="nav-link" href="{{'/contactus'}}">Contact</a></div>
+            </li>
+
+            
+            <li class="nav-item">
+                <div style="border-radius: 10px;" class="" onmouseover="this.style.background='white'" onmouseout="this.style.background='#d1ecff'">
+                <a class="nav-link" href="{{'/appointment'}}">Appointment</a></div>
+            </li>
+            
+            <!-- <li class="nav-item">
+              <a class="nav-link btn btn-primary text-white" type="button" href="#" data-toggle="modal" data-target="#myModal">Sign In</a>                  
+            </li> -->
+            <!-- <li class="nav-item">
+                <a class="nav-link btn btn-danger text-white" type="button" href="{{'/job_registeration'}}" data-toggle="modal" data-target="#myModal">Apply For Job</a>
+            </li> -->
+        </ul>
+    </div>
+    </nav>
