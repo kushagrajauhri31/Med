@@ -9,7 +9,7 @@ class TestDetails(models.Model):
     id=models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     Test_name=models.CharField(max_length=100)
     Charge=models.IntegerField()
-    test_img=models.FileField(upload_to="media/TestDetails",default="default\sample_testImg.jpg")
+    test_img=models.FileField(upload_to="media/TestDetails",default="default/sample_testImg.jpg")
     Test_Condition=models.CharField(max_length=100,null=False)
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
